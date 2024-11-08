@@ -8,13 +8,30 @@ body {
   }
 
   header {
-    background: url(header.jpg)
-      no-repeat;
+    position: relative;
+    background: url(header.jpg) no-repeat;
     color: #fff;
     text-align: center;
     padding-bottom: 10px;
     background-size: cover;
     background-attachment: fixed;
+    overflow: hidden; /* Agar pseudo-element tidak keluar dari header */
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi 50% */
+    z-index: 1;
+  }
+  
+  header * {
+    position: relative;
+    z-index: 2; /* Agar teks dan elemen lain berada di atas overlay */
   }
 
   .header-logo {
@@ -95,11 +112,16 @@ body {
     gap: 15px;
   }
 
+  .product-side {
+    flex: 1;
+  }
+
   .div-foto-product {
+    max-width: 90%;
+    aspect-ratio: 4 / 3;
     border-radius: 20px;
     overflow: hidden;
-    width: 490px;
-    height: 280px;
+    display: inline-block;
   }
 
   .option-product {
@@ -128,7 +150,10 @@ body {
   }
 
   .foto-product {
-    width: 500px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
 
   .plus {
@@ -157,6 +182,7 @@ body {
   }
 
   .order-side {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -234,7 +260,7 @@ body {
     transform: translateY(0);
   }
 
-  #about {
+  #about1 {
     margin-bottom: 50px;
     background-color: #fff;
     padding: 30px;
@@ -247,12 +273,31 @@ body {
     gap: 20px;
   }
 
-  #about.visible {
+  #about1.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  #services {
+  #about2 {
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 17px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #about2.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #services1 {
     margin-bottom: 50px;
     background-color: #fff;
     padding: 30px;
@@ -266,9 +311,40 @@ body {
     align-items: center;
   }
 
-  #services.visible {
+  #services1.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  #services2 {
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 17px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  #services2.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #keranjang2 .body-keranjang {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #keranjang2 .div-foto-product-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   h2 {
@@ -277,28 +353,52 @@ body {
     font-size: 2em;
   }
 
+  .about-img-div-area {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+  }
+
   .about-img-div {
     border-radius: 20px;
     overflow: hidden;
-    flex: 1;
-    height: 330px;
+    display: inline-block;
+    max-width: fit-content;
+    max-height: fit-content;
+  }
+  
+  .about-img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-  .about-img {
-    width: 500px;
+  #services2 .service-img-div-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .service-img-div-area {
+    flex: 1;
+    min-width: 300px;
   }
 
   .service-img-div {
     border-radius: 20px;
-    flex: 1;
-    height: 500px;
     overflow: hidden;
+    display: inline-block;
+    max-width: fit-content;
+    max-height: fit-content;
   }
 
   .service-img {
     width: 100%;
-    height: 100%;
+    max-width: 500px;
+    height: auto;
     object-fit: cover;
+    display: block;
   }
 
   .text-about {
@@ -409,21 +509,233 @@ body {
     margin: 0;
   }
 
-  @media (max-width: 768px) {
-    .images-container {
-      flex-direction: column;
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 1001;
+    padding-top: 60px;
+  }
+
+  .side-menu.active {
+    left: 0;
+  }
+
+  .side-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .side-menu ul li {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  /* Style untuk overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Burger icon styling */
+  .burger-icon {
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .burger-icon div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
+  /* Mobile */
+  @media (max-width: 576px) {
+    .header-text {
+      display: none;
     }
 
-    .images-container img {
-      width: 90%;
-      margin: 0 auto;
+    .menu-button{
+      display: block;
+      width: fit-content;
     }
 
-    header {
-      flex-direction: column;
+    #about1 {
+      display: none;
     }
 
-    header a {
-      margin: 10px 0;
+    #about2 {
+      display: flex;
+    }
+
+    #services1 {
+      display: none;
+    }
+
+    #services2 {
+      display: flex;
+    }
+
+    #keranjang {
+      display: none;
+    }
+
+    #keranjang2 {
+      display: block;
+    }
+  }
+
+  /* Tablet */
+  @media (min-width: 577px) and (max-width: 768px) {
+    .header-text {
+      display: none;
+    }
+
+    .menu-button{
+      display: block;
+      width: fit-content;
+    }
+
+    #about1 {
+      display: none;
+    }
+
+    #about2 {
+      display: flex;
+    }
+
+    #services1 {
+      display: none;
+    }
+
+    #services2 {
+      display: flex;
+    }
+
+    #keranjang {
+      display: none;
+    }
+
+    #keranjang2 {
+      display: block;
+    }
+  }
+
+  /* Small Laptops */
+  @media (min-width: 769px) and (max-width: 992px) {
+    .menu-button{
+      display: none;
+    }
+
+    #about1 {
+      display: none;
+    }
+
+    #about2 {
+      display: flex;
+    }
+
+    #services1 {
+      display: none;
+    }
+
+    #services2 {
+      display: flex;
+    }
+
+    #keranjang {
+      display: none;
+    }
+
+    #keranjang2 {
+      display: block;
+    }
+  }
+
+  /* Desktops */
+  @media (min-width: 993px) and (max-width: 1200px) {
+    .menu-button{
+      display: none;
+    }
+
+    #about1 {
+      display: flex;
+    }
+
+    #about2 {
+      display: none;
+    }
+
+    #services1 {
+      display: flex;
+    }
+
+    #services2 {
+      display: none;
+    }
+
+    #keranjang {
+      display: block;
+    }
+
+    #keranjang2 {
+      display: none;
+    }
+  }
+
+  /* Large Desktops */
+  @media (min-width: 1201px) {
+    .menu-button{
+      display: none;
+    }
+
+    #about1 {
+      display: flex;
+    }
+
+    #about2 {
+      display: none;
+    }
+
+    #services1 {
+      display: flex;
+    }
+
+    #services2 {
+      display: none;
+    }
+
+    #keranjang {
+      display: block;
+    }
+
+    #keranjang2 {
+      display: none;
     }
   }

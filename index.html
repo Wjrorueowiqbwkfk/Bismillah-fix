@@ -11,6 +11,18 @@
     />
   </head>
   <body>
+    <!-- Overlay untuk gelapkan sekitar -->
+    <div class="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Burger Menu -->
+    <nav class="side-menu">
+      <ul>
+        <li><a href="#about">Tentang Kami</a></li>
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#forum">Forum</a></li>
+      </ul>
+    </nav>
+
     <header>
       <div class="header-logo">
         <a href="#" class="logo"
@@ -20,6 +32,13 @@
           <a href="#about">Tentang Kami</a>
           <a href="#services">Layanan</a>
           <a href="#forum">Forum</a>
+        </div>
+        <div
+          class="menu-button"
+          style="margin-top: 20px; margin-right: 20px"
+          onclick="toggleMenu()"
+        >
+          <img src="menu.png" alt="" style="width: 30px" class="menu-img" />
         </div>
       </div>
       <h1>
@@ -36,9 +55,11 @@
     </header>
 
     <div class="container">
-      <section id="about" class="section">
-        <div class="about-img-div">
-          <img src="hand.jpg" alt="" class="about-img" />
+      <section id="about1" class="section">
+        <div class="about-img-div-area">
+          <div class="about-img-div">
+            <img src="hand.jpg" alt="" class="about-img" />
+          </div>
         </div>
         <div class="text-about">
           <h2 style="color: #b6984d">Tentang Kami</h2>
@@ -53,7 +74,22 @@
         </div>
       </section>
 
-      <section id="services" class="section">
+      <section id="about2" class="section">
+        <h2 style="color: #b6984d">Tentang Kami</h2>
+        <div class="about-img-div">
+          <img src="hand.jpg" alt="" class="about-img" />
+        </div>
+        <p>
+          2ndGlow adalah sebuah inisiatif untuk mengurangi dampak limbah minyak
+          di Indonesia dengan cara mengubahnya menjadi lilin relaksasi dan
+          aromaterapi yang ramah lingkungan. Kami percaya bahwa melalui inovasi
+          dan kreativitas, kita dapat menciptakan produk yang bermanfaat bagi
+          manusia sekaligus mengurangi kerusakan alam yang terjadi akibat limbah
+          minyak.
+        </p>
+      </section>
+
+      <section id="services1" class="section">
         <div class="service-about">
           <h2 style="color: #b6984d">Layanan Kami</h2>
           <ul>
@@ -83,9 +119,46 @@
             </li>
           </ul>
         </div>
-        <div class="service-img-div">
-          <img src="potrait.jpg" alt="" class="service-img" />
+        <div class="service-img-div-area">
+          <div class="service-img-div">
+            <img src="potrait.jpg" alt="" class="service-img" />
+          </div>
         </div>
+      </section>
+
+      <section id="services2" class="section">
+        <h2 style="color: #b6984d">Layanan Kami</h2>
+        <div class="service-img-div-area">
+          <div class="service-img-div">
+            <img src="potrait.jpg" alt="" class="service-img" />
+          </div>
+        </div>
+        <ul>
+          <li>
+            Forum diskusi dan konsultasi tentang pengelolaan limbah minyak.
+          </li>
+          <li>
+            Informasi dan tutorial tentang pembuatan lilin aromaterapi dari
+            bahan-bahan ramah lingkungan.
+          </li>
+          <li>
+            Paket lilin khusus yang dibuat sesuai kebutuhan dan preferensi
+            pelanggan.
+          </li>
+          <li>Layanan pesanan khusus untuk lilin aromaterapi.</li>
+          <li>
+            Panduan memilih lilin berdasarkan suasana hati, aroma, dan
+            kebutuhan.
+          </li>
+          <li>
+            Konten edukatif tentang manfaat aromaterapi dan keberlanjutan
+            lingkungan.
+          </li>
+          <li>
+            Kelas online tentang teknik pembuatan lilin dan pemanfaatan limbah
+            minyak.
+          </li>
+        </ul>
       </section>
 
       <section id="konsultasi" class="section">
@@ -123,16 +196,16 @@
               <img
                 src="relaksasi.png"
                 alt=""
-                class="foto-product"
+                class="foto-product fotoProduct"
                 id="fotoProduct"
               />
             </div>
-            <p id="namaProduct" class="nama-product">Relaksasi</p>
+            <p id="namaProduct" class="nama-product namaProduct">Relaksasi</p>
             <div class="product-option">
-              <div id="relaksasi" class="option-product">
+              <div id="relaksasi" class="option-product relaksasi">
                 <img src="relaksasi.png" alt="" class="option-foto-product" />
               </div>
-              <div id="aromaterapi" class="option-product">
+              <div id="aromaterapi" class="option-product aromaterapi">
                 <img
                   src="aromaterapi.webp"
                   alt=""
@@ -158,18 +231,105 @@
             <form action="config.php" method="POST">
               <div class="order-adjust-buttons">
                 <div class="div-keranjang">
-                  <button id="minusBtn" class="minus-button" type="button">
+                  <button
+                    id="minusBtn"
+                    class="minus-button minusBtn"
+                    type="button"
+                  >
                     <img src="minus.png" alt="" class="minus" />
                   </button>
                   <input
                     id="orderInput"
                     type="text"
                     readonly
-                    class="order-text"
+                    class="order-text orderInput"
                     value="1"
                     min="1"
                   />
-                  <button id="plusBtn" class="plus-button" type="button">
+                  <button
+                    id="plusBtn"
+                    class="plus-button plusBtn"
+                    type="button"
+                  >
+                    <img src="plus.png" alt="" class="plus" />
+                  </button>
+                </div>
+              </div>
+              <div class="div-order-button">
+                <button class="order-button" type="submit">
+                  Order <img src="shopping-cart.png" alt="" class="sh-cart" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="keranjang2" class="section">
+        <h2 style="color: #b6984d">Produk Kami</h2>
+        <div class="body-keranjang">
+          <div class="product-side">
+            <p>
+              Kami menghadirkan produk lilin aromaterapi dan lilin relaksasi
+              yang terbuat dari bahan utama minyak jelantah yang telah didaur
+              ulang. Minyak jelantah ini kami kumpulkan melalui kerjasama dengan
+              rumah tangga dan UMKM yang telah bermitra dengan kami, memastikan
+              proses yang berkelanjutan dan ramah lingkungan. Dengan aroma yang
+              menenangkan dan desain yang elegan, lilin kami tidak hanya
+              menciptakan suasana relaksasi, tetapi juga mendukung konsep daur
+              ulang dan pengurangan limbah. Produk ini dirancang dengan kualitas
+              tinggi dan melalui proses penyaringan yang teliti untuk memberikan
+              hasil lilin yang aman, bersih, serta menyebarkan keharuman
+              alami yang memikat.
+            </p>
+            <div class="div-foto-product-area">
+              <div class="div-foto-product">
+                <img
+                  src="relaksasi.png"
+                  alt=""
+                  class="foto-product fotoProduct"
+                  id="fotoProduct2"
+                />
+              </div>
+            </div>
+            <p id="namaProduct2" class="nama-product namaProduct">Relaksasi</p>
+            <div class="product-option">
+              <div id="relaksasi2" class="option-product relaksasi">
+                <img src="relaksasi.png" alt="" class="option-foto-product" />
+              </div>
+              <div id="aromaterapi2" class="option-product aromaterapi">
+                <img
+                  src="aromaterapi.webp"
+                  alt=""
+                  class="option-foto-product"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="order-side">
+            <form action="config.php" method="POST">
+              <div class="order-adjust-buttons">
+                <div class="div-keranjang">
+                  <button
+                    id="minusBtn2"
+                    class="minus-button minusBtn"
+                    type="button"
+                  >
+                    <img src="minus.png" alt="" class="minus" />
+                  </button>
+                  <input
+                    id="orderInput2"
+                    type="text"
+                    readonly
+                    class="order-text orderInput"
+                    value="1"
+                    min="1"
+                  />
+                  <button
+                    id="plusBtn2"
+                    class="plus-button plusBtn"
+                    type="button"
+                  >
                     <img src="plus.png" alt="" class="plus" />
                   </button>
                 </div>
@@ -191,7 +351,7 @@
           pengalaman tentang pengelolaan limbah minyak dan pembuatan lilin. Kami
           percaya bahwa kolaborasi adalah kunci untuk mencapai keberlanjutan.
         </p>
-        <div class="images-container">
+        <!-- <div class="images-container">
           <img
             src="https://example.com/discussion.jpg"
             alt="Diskusi Pengelolaan Limbah"
@@ -200,7 +360,7 @@
             src="https://example.com/community.jpg"
             alt="Komunitas Lingkungan"
           />
-        </div>
+        </div> -->
         <a href="https://web.whatsapp.com/082384113821" class="button"
           >Bergabung Sekarang</a
         >
@@ -213,36 +373,64 @@
 
     <!-- Masukkan kode JavaScript sebelum penutup body -->
     <script>
-      const minusBtn = document.getElementById("minusBtn");
-      const plusBtn = document.getElementById("plusBtn");
-      const orderInput = document.getElementById("orderInput");
-      const relaksasi = document.getElementById("relaksasi");
-      const aromaterapi = document.getElementById("aromaterapi");
-      const fotoProduct = document.getElementById("fotoProduct");
-      const namaProduct = document.getElementById("namaProduct");
+      // Fungsi untuk mengubah gambar dan nama produk di semua keranjang
+      function updateProduct(fotoSrc, nama) {
+        document.querySelectorAll(".fotoProduct").forEach((fotoProduct) => {
+          fotoProduct.src = fotoSrc;
+        });
+        document.querySelectorAll(".namaProduct").forEach((namaProduct) => {
+          namaProduct.textContent = nama;
+        });
+      }
 
-      relaksasi.addEventListener("click", function () {
-        fotoProduct.src = "relaksasi.png";
-        namaProduct.textContent = "Relaksasi";
+      // Fungsi untuk memperbarui jumlah order di semua keranjang
+      function updateOrder(newValue) {
+        document.querySelectorAll(".orderInput").forEach((orderInput) => {
+          orderInput.value = newValue;
+        });
+      }
+
+      const keranjangs = document.querySelectorAll(".body-keranjang");
+
+      keranjangs.forEach((keranjang) => {
+        const relaksasi = keranjang.querySelector(".relaksasi");
+        const aromaterapi = keranjang.querySelector(".aromaterapi");
+        const plusBtn = keranjang.querySelector(".plusBtn");
+        const minusBtn = keranjang.querySelector(".minusBtn");
+
+        // Event listener untuk relaksasi
+        relaksasi.addEventListener("click", function () {
+          updateProduct("relaksasi.png", "Relaksasi");
+        });
+
+        // Event listener untuk aromaterapi
+        aromaterapi.addEventListener("click", function () {
+          updateProduct("aromaterapi.webp", "Aromaterapi");
+        });
+
+        // Event listener untuk tombol plus
+        plusBtn.addEventListener("click", function () {
+          let currentValue = parseInt(
+            document.querySelector(".orderInput").value
+          );
+          updateOrder(currentValue + 1);
+        });
+
+        // Event listener untuk tombol minus
+        minusBtn.addEventListener("click", function () {
+          let currentValue = parseInt(
+            document.querySelector(".orderInput").value
+          );
+          if (currentValue > 1) {
+            updateOrder(currentValue - 1);
+          }
+        });
       });
 
-      aromaterapi.addEventListener("click", function () {
-        fotoProduct.src = "aromaterapi.webp";
-        namaProduct.textContent = "Aromaterapi";
-      });
-
-      plusBtn.addEventListener("click", function () {
-        let currentValue = parseInt(orderInput.value);
-        orderInput.value = currentValue + 1;
-      });
-
-      minusBtn.addEventListener("click", function () {
-        let currentValue = parseInt(orderInput.value);
-        if (currentValue > 1) {
-          // Agar tidak kurang dari 1
-          orderInput.value = currentValue - 1;
-        }
-      });
+      function toggleMenu() {
+        document.querySelector(".side-menu").classList.toggle("active");
+        document.querySelector(".overlay").classList.toggle("active");
+      }
 
       // Validasi form jadwal konsultasi
       document
